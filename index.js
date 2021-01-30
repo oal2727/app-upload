@@ -22,17 +22,23 @@ require("./src/database.js")
 
 
 app.use('/api',require("./src/controller/ControllerUser.js"))
-app.use('/api',require("./src/	controller/ControllerImage.js"))
+app.use('/api',require("./src/controller/ControllerImage.js"))
 
 
 
-
-if(process.env.NODE_ENV === 'production'){
-	app.use(express.static("client/build"));
-// app.get('*',(req,res)=>{
-// 	res.sendFile(path.join(__dirname,'./client/build/index.html'));
-// });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
+
+
+console.log(path.join(__dirname,"client/build"))
+// app.use(express.static("client/build"));
+// app.get('*',(req,res)=>{
+// 	res.sendFile(path_resolve(__dirname,'client','build','index.html'));
+// });
 
 
 // console.log(__dirname,"../client");
