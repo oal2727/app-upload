@@ -33,8 +33,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-
-console.log(path.join(__dirname,"client/build"))
 // app.use(express.static("client/build"));
 // app.get('*',(req,res)=>{
 // 	res.sendFile(path_resolve(__dirname,'client','build','index.html'));
