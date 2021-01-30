@@ -1,0 +1,39 @@
+const express = require("express")
+const app = express()
+const morgan = require("morgan")
+const cors = require("cors")
+const bodyParser = require('body-parser')
+const path = require("path");
+//use enviroments globals
+require('dotenv').config()
+
+//enable cors
+app.use(cors())
+//checkout http code
+app.use(morgan("dev"))
+
+app.use(bodyParser.json());
+
+app.use(bodyParser.urlencoded({ extended: false }));
+
+const port = process.env.PORT || 4000
+
+
+
+app.use('/api',require("./controller/ControllerUser.js"))
+app.use('/api',require("./controller/ControllerImage.js"))
+
+//
+if(process.env.NODE_ENV === 'production'){
+	app.use(express.static("../client/build"))
+	app.get('*',(req,res)=>{
+		res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+	});
+}
+
+require("./database.js")
+
+
+app.listen(port,()=>{
+	console.log(`App initialize on port : ${port}`)
+})
