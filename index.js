@@ -21,8 +21,8 @@ const port = process.env.PORT || 4000
 require("./src/database.js")
 
 
-app.use('/api',require("./controller/ControllerUser.js"))
-app.use('/api',require("./controller/ControllerImage.js"))
+app.use('/api',require("./src/controller/ControllerUser.js"))
+app.use('/api',require("./src/controller/ControllerImage.js"))
 
 
 
