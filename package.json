@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install npm && run build"
+    "start" : "node src/index.js",
+    "client": "npm start --prefix client",
+    "server" : "nodemon src/index.js",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm && run build --prefix client"
   },
   "keywords": [],
   "author": "",

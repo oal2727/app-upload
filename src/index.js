@@ -27,13 +27,14 @@ app.use('/api',require("./controller/ControllerImage.js"))
 if(process.env.NODE_ENV === 'production'){
 	app.use(express.static("../client/build"))
 	app.get('*',(req,res)=>{
-		res.sendFile(path.resolve(__dirname,'client','build','index.html'));
+		res.sendFile(path.resolve(__dirname,'../client','build','index.html'));
 	});
 }
 
 require("./database.js")
 
-
+// console.log(__dirname,"../client");
+// const patss = path.resolve(__dirname,"../client")
 app.listen(port,()=>{
 	console.log(`App initialize on port : ${port}`)
 })
