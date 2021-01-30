@@ -10,7 +10,7 @@ const multer = require('multer');
 
 
 var storage = multer.diskStorage({
- 	destination: '../../../public/uploads/',
+ 	destination: '../../public/uploads/',
    filename:  (req, file, cb) => {
         cb(null, uuid()+ path.extname(file.originalname));
     }
@@ -20,7 +20,7 @@ const upload = multer({ storage: storage }).single('image');
 cloudinary.config({ 
   cloud_name: process.env.CLOUD_NAME, 
   api_key: process.env.CLOUD_API_KEY, 
-  api_secret: 'FjkPO_r-0Iv13YMwlN2bzvjFnGg' 
+  api_secret: process.env.CLOUD_SECRET 
 })
 
 
@@ -39,6 +39,7 @@ router.post('/sendimage',verifyToken,upload,async(req,res)=>{
 			const response = await imagen.save();
 			if(response){
 				return res.status(200).json(response)
+				//upload file and delete file
 				fs.unlink(req.file.path)
 			}else{
 				return res.status(400).json("problem send")
