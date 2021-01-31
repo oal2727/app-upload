@@ -27,7 +27,7 @@ app.use('/api',require("./src/controller/ControllerImage.js"))
 
 
 if(process.env.NODE_ENV === 'production'){
-    app.use(express.static('client-app/build'));
+    app.use(express.static('client/build'));
 }
 
 
